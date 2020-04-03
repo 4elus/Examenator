@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_top_main">30dp</dimen>
+    <dimen name="margin_side_tick">10dp</dimen>
+    <dimen name="margin_side_main">10dp</dimen>
+    <dimen name="text_size_main">20sp</dimen>
+    <dimen name="progressbar_height">16dp</dimen>
+    <dimen name="button_size">60dp</dimen>
+    <dimen name="grid_size">400dp</dimen>
+    <dimen name="row_size">350dp</dimen>
+    <dimen name="marginVerticalMini">15dp</dimen>
+    <dimen name="textHeaderMini">21sp</dimen>
+    <dimen name="marginHorizontalMini">15dp</dimen>
+    <dimen name="textHeader">28sp</dimen>
+    <dimen name="dividerHeight">3dp</dimen>
+    <dimen name="textMain">18sp</dimen>
+    <dimen name="answerButtonsHeight"></dimen>
+
+</resources>

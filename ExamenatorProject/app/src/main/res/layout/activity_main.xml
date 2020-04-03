@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="@dimen/margin_side_main"
+        android:layout_marginRight="@dimen/margin_side_main">
+
+        <TextView
+            android:fontFamily="@font/robo"
+            android:layout_width="1dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="@string/main_button_question_name"/>
+
+        <TextView
+            android:fontFamily="@font/robo"
+            android:layout_width="1dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="20/75"
+            android:gravity="right"/>
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBarDoneAnswer"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:scaleY="2"
+        android:layout_height="@dimen/progressbar_height"
+        android:layout_marginLeft="@dimen/margin_side_main"
+        android:layout_marginRight="@dimen/margin_side_main"
+        android:progressTint="@color/colorLightBlue"
+        android:progressBackgroundTint="@color/colorGreyWhite"
+        android:max="75"
+        android:progress="20"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="@dimen/margin_side_main"
+        android:layout_marginRight="@dimen/margin_side_main">
+
+        <TextView
+            android:id="@+id/customTitle"
+            android:fontFamily="@font/robo"
+            android:layout_width="1dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="@string/main_button_ticket_name"/>
+
+        <TextView android:fontFamily="@font/robo"
+            android:layout_width="1dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="1/15"
+            android:gravity="right"/>
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBarTrueAnswer"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/progressbar_height"
+        android:layout_marginLeft="@dimen/margin_side_main"
+        android:layout_marginRight="@dimen/margin_side_main"
+        android:layout_marginTop="@dimen/margin_side_main"
+        android:scaleY="2"
+        android:progressTint="@color/colorLightGreen"
+        android:progressBackgroundTint="@color/colorGreyWhite"
+        android:max="15"
+        android:progress="1"
+        />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_marginTop="@dimen/margin_side_main"
+        android:background="@color/colorDivider" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:weightSum="2"
+        android:layout_marginTop="25dp">
+
+        <Button
+            android:fontFamily="@font/robo"
+            android:layout_width="1dp"
+            android:layout_weight="1"
+            android:layout_margin="4dp"
+            android:background="@drawable/insent"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/colorButMainExam"
+            android:text="Случайный билет"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"
+            android:onClick="clickExam"
+            android:textSize="@dimen/text_size_main"/>
+        <Button
+            android:fontFamily="@font/robo"
+            android:layout_width="1dp"
+            android:onClick="clickQuestion"
+            android:layout_weight="1"
+            android:layout_margin="4dp"
+            android:background="@drawable/insent"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/colorButMainQue"
+            android:text="Случайный вопрос"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_size_main"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:weightSum="2">
+
+        <Button
+            android:fontFamily="@font/robo"
+            android:layout_width="1dp"
+            android:layout_weight="1"
+            android:layout_margin="4dp"
+            android:background="@drawable/insent"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/colorButMainFault"
+            android:text="@string/main_button_fault_name"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"
+            android:onClick="clickProgress"
+            android:textSize="@dimen/text_size_main"/>
+
+        <Button
+            android:fontFamily="@font/robo"
+            android:layout_width="1dp"
+            android:onClick="showTickets"
+            android:layout_weight="1"
+            android:layout_margin="4dp"
+            android:background="@drawable/insent"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/colorButMainTick"
+            android:text="Список билетов"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_size_main"/>
+
+    </LinearLayout>
+</LinearLayout>

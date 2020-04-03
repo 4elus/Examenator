@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".TicketActivity">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/margin_top_main"
+        android:layout_gravity="center">
+
+        <Button
+            android:text="1"
+            android:layout_width="@dimen/button_size"
+            android:layout_height="@dimen/button_size"
+            android:layout_marginRight="@dimen/margin_side_tick"
+            android:background="@drawable/nav_question"
+            android:backgroundTint="@color/colorProgressBar"
+            android:textColor="#fff"/>
+        <Button
+            android:text="2"
+            android:layout_width="@dimen/button_size"
+            android:layout_height="@dimen/button_size"
+            android:layout_marginRight="@dimen/margin_side_tick"
+            android:background="@drawable/nav_question"
+            android:backgroundTint="@color/colorProgressBar"/>
+        <Button
+            android:text="3"
+            android:layout_width="@dimen/button_size"
+            android:layout_height="@dimen/button_size"
+            android:layout_marginRight="@dimen/margin_side_tick"
+            android:background="@drawable/nav_question"
+            android:backgroundTint="@color/colorProgressBar"/>
+        <Button
+            android:text="4"
+            android:layout_width="@dimen/button_size"
+            android:layout_height="@dimen/button_size"
+            android:layout_marginRight="@dimen/margin_side_tick"
+            android:background="@drawable/nav_question"
+            android:backgroundTint="@color/colorProgressBar"/>
+        <Button
+            android:text="5"
+            android:layout_width="@dimen/button_size"
+            android:layout_height="@dimen/button_size"
+            android:background="@drawable/nav_question"
+            android:backgroundTint="@color/colorProgressBar"/>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_marginTop="@dimen/margin_side_main"
+        android:background="@color/colorDivider" />
+
+
+
+    <TextView
+        android:id="@+id/title_question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_top_main"
+        android:padding="@dimen/margin_side_main"
+        android:text="Текст вопроса"
+        android:background="@color/colorTickText"
+        android:textColor="@color/colorDivider"
+        android:textSize="@dimen/text_size_main"
+        android:layout_marginTop="@dimen/margin_top_main"
+        android:layout_marginLeft="@dimen/margin_side_main"
+        android:layout_marginRight="@dimen/margin_side_main"/>
+
+
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/marginVerticalMini">
+
+        <Button
+            android:id="@+id/yesAnswer"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/answerButtonsHeight"
+            android:layout_marginBottom="@dimen/marginVerticalMini"
+            android:background="@drawable/insent"
+            android:backgroundTint="@color/colorMainGreen"
+            android:layout_gravity="center"
+            android:text="Знаю"
+            android:textSize="@dimen/textHeaderMini"
+            android:textColor="@color/colorLightGrey"
+            android:textStyle="bold"/>
+        <Button
+            android:id="@+id/noAnswer"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/answerButtonsHeight"
+            android:background="@drawable/insent"
+            android:backgroundTint="@color/colorMainRed"
+            android:layout_gravity="center"
+            android:text="Ответ"
+            android:onClick="showAnswer"
+            android:textSize="@dimen/textHeaderMini"
+            android:textColor="@color/colorLightGrey"
+            android:textStyle="bold"/>
+    </GridLayout>
+
+</LinearLayout>

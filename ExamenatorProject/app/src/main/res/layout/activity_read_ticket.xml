@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ReadTicketActivity"
+    android:orientation="vertical">
+
+    <!--
+    <TextView
+        android:id="@+id/ticketNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:layout_marginTop="@dimen/marginVerticalMini"
+        android:layout_marginRight="@dimen/marginHorizontalMini"
+        android:layout_marginLeft="@dimen/marginHorizontalMini"
+        android:layout_marginBottom="@dimen/marginVerticalMini"
+        android:text="Вопрос 45"
+        android:textSize="@dimen/textHeader"
+        android:textColor="@color/colorDarkBlue"
+        android:textStyle="bold"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dividerHeight"
+        android:layout_weight="0"
+        android:background="@color/colorDarkBlue"/>-->
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_weight="3"
+        android:layout_marginLeft="@dimen/marginHorizontalMini"
+        android:layout_marginRight="@dimen/marginHorizontalMini"
+        android:src="@drawable/example_img"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_weight="4"
+        android:layout_margin="@dimen/marginVerticalMini">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/marginVerticalMini"
+                android:text="Текст билета"
+                android:textSize="@dimen/textMain"
+                android:textColor="@color/colorDarkBlue"
+                android:background="@color/colorLightBlueText"/>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">ЭКЗАМЕНАТОР</string>
+    <!--    главная страница (главная активность)-->
+    <string name="parameter_statistic">Статистика</string>
+    <string name="main_button_exam_name">Экзамен</string>
+    <string name="main_button_ticket_name">Билеты</string>
+    <string name="main_button_question_name">Вопросы</string>
+    <string name="main_button_fault_name">Прогресс</string>
+    <string name="main_button_reset_tickets">Сброс билетов</string>
+    <string name="main_button_reset_questions">Сброс вопросов</string>
+    <!--страница билета    -->
+    <string name="but_next_text">СЛЕДУЮЩИЙ ВОПРОС</string>
+    <string name="yesAnswer">ДА</string>
+    <string name="noAnswer">НЕТ</string>
+    <string name="test">Hello <a href="https://www.google.ru/">World</a></string>
+</resources>

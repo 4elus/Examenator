@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03A9F4</color>
+    <color name="colorProgressBar">#4F9FF5</color>
+    <color name="colorDivider">#203850</color>
+    <color name="colorWhite">#FFFFFF</color>
+
+    <color name="colorButMainQue">#9BD9FF</color>
+    <color name="colorButMainTick">#AB9EFF</color>
+    <color name="colorButMainFault">#FC6D92</color>
+    <color name="colorButMainExam">#61F2C0</color>
+    <color name="colorTickText">#E1F3F2</color>
+    <color name="colorLightBlue">#58b1ff</color>
+    <color name="colorGreyWhite">#f2ebeb</color>
+    <color name="colorLightGreen">#96e3bc</color>
+    <color name="colorDarkBlue">#000520</color>
+    <color name="colorLightBlueText">#edf1f6</color>
+    <color name="colorMainGreen">#58edae</color>
+    <color name="colorLightGrey">#f1f0f0</color>
+    <color name="colorMainRed">#ff4f6d</color>
+</resources>
