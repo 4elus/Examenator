@@ -7,10 +7,10 @@
     <color name="colorDivider">#203850</color>
     <color name="colorWhite">#FFFFFF</color>
 
-    <color name="colorButMainQue">#9BD9FF</color>
+    <color name="colorButMainQue">#61F2C0</color>
     <color name="colorButMainTick">#AB9EFF</color>
     <color name="colorButMainFault">#FC6D92</color>
-    <color name="colorButMainExam">#61F2C0</color>
+    <color name="colorButMainExam">#9BD9FF</color>
     <color name="colorTickText">#E1F3F2</color>
     <color name="colorLightBlue">#58b1ff</color>
     <color name="colorGreyWhite">#f2ebeb</color>
@@ -19,5 +19,5 @@
     <color name="colorLightBlueText">#edf1f6</color>
     <color name="colorMainGreen">#58edae</color>
     <color name="colorLightGrey">#f1f0f0</color>
-    <color name="colorMainRed">#ff4f6d</color>
+    <color name="colorMainRed">#ff4f6d</color>61F2C0
 </resources>

@@ -8,19 +8,19 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:textColor="@color/colorWhite"
-        android:text="@string/main_button_reset_tickets"
-        android:backgroundTint="@color/colorDivider"
-
-       
+        android:text="@string/parameter_statistic"
+        android:background="@color/colorDarkBlue"
         />
 
     <GridView
         android:id="@+id/grid"
-        android:numColumns="5"
+        android:numColumns="7"
+        android:horizontalSpacing="-16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:nestedScrollingEnabled="true">
 
     </GridView>
+
 
 </LinearLayout>
