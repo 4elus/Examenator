@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dividerHeight"
         android:layout_weight="0"
-        android:background="@color/colorDarkBlue"/>-->
+        android:background="@color/colorDarkBlue"/>
 
     <ImageView
         android:layout_width="match_parent"
@@ -33,7 +33,7 @@
         android:layout_weight="3"
         android:layout_marginLeft="@dimen/marginHorizontalMini"
         android:layout_marginRight="@dimen/marginHorizontalMini"
-        android:src="@drawable/example_img"/>
+        android:src="@drawable/example_img"/>-->
 
     <ScrollView
         android:layout_width="match_parent"
@@ -42,8 +42,11 @@
         android:layout_margin="@dimen/marginVerticalMini">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <TextView
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:id="@+id/readLayout">
+           <!-- <TextView
+                android:id="@+id/textViewQuestion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/marginVerticalMini"
@@ -51,6 +54,17 @@
                 android:textSize="@dimen/textMain"
                 android:textColor="@color/colorDarkBlue"
                 android:background="@color/colorLightBlueText"/>
+
+            <TextView
+                android:id="@+id/textAnswerForQuestion"
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/marginVerticalMini"
+                android:text="Текст билета"
+                android:textSize="16sp"
+                android:textColor="@color/colorDarkBlue"
+                android:background="@color/colorLightYellowText"/> -->
         </LinearLayout>
     </ScrollView>
 

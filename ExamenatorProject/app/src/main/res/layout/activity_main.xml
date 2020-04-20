@@ -22,6 +22,7 @@
             android:text="@string/main_button_question_name"/>
 
         <TextView
+            android:id="@+id/progressQuestion"
             android:fontFamily="@font/robo"
             android:layout_width="1dp"
             android:layout_weight="1"
@@ -41,7 +42,7 @@
         android:progressTint="@color/colorLightBlue"
         android:progressBackgroundTint="@color/colorGreyWhite"
         android:max="75"
-        android:progress="20"
+        android:progress="10"
         />
 
     <LinearLayout
@@ -60,6 +61,7 @@
             android:text="@string/main_button_ticket_name"/>
 
         <TextView android:fontFamily="@font/robo"
+            android:id="@+id/progressTicket"
             android:layout_width="1dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
@@ -68,7 +70,7 @@
     </LinearLayout>
 
     <ProgressBar
-        android:id="@+id/progressBarTrueAnswer"
+        android:id="@+id/progressBarDoneTicket"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="@dimen/progressbar_height"

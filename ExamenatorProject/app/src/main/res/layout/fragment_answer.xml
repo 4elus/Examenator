@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:id="@+id/container"
+    android:layout_marginLeft="15dp">
+
+    <TextView
+        android:id="@+id/textAnswer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="Ответ"></TextView>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/marginVerticalMini">
+
+
+        <Button
+            android:layout_marginTop="20dp"
+            android:id="@+id/noAnswer"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/answerButtonsHeight"
+            android:background="@drawable/insent"
+            android:backgroundTint="@color/colorMainRed"
+            android:layout_gravity="center"
+            android:text="Закрыть"
+            android:onClick="closeAnswer"
+            android:textSize="@dimen/textHeaderMini"
+            android:textColor="@color/colorLightGrey"
+            android:textStyle="bold"/>
+    </GridLayout>
+
+</LinearLayout>

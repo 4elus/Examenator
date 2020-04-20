@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03A9F4</color>
     <color name="colorProgressBar">#4F9FF5</color>
+
     <color name="colorDivider">#203850</color>
     <color name="colorWhite">#FFFFFF</color>
 
@@ -17,7 +18,10 @@
     <color name="colorLightGreen">#96e3bc</color>
     <color name="colorDarkBlue">#000520</color>
     <color name="colorLightBlueText">#edf1f6</color>
+    <color name="colorLight">#FCFCFF</color>
+    <color name="colorLightYellowText">#FFFACD</color>
     <color name="colorMainGreen">#58edae</color>
     <color name="colorLightGrey">#f1f0f0</color>
     <color name="colorMainRed">#ff4f6d</color>
+    <color name="colorClose">#85857F</color>
 </resources>

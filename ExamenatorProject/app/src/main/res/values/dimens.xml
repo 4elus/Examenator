@@ -3,7 +3,7 @@
     <dimen name="margin_top_main">30dp</dimen>
     <dimen name="margin_side_tick">10dp</dimen>
     <dimen name="margin_side_main">10dp</dimen>
-    <dimen name="text_size_main">20sp</dimen>
+    <dimen name="text_size_main">16sp</dimen>
     <dimen name="progressbar_height">16dp</dimen>
     <dimen name="button_size">60dp</dimen>
     <dimen name="grid_size">400dp</dimen>
