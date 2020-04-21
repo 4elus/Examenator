@@ -4,12 +4,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteTransactionListener;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -34,14 +30,9 @@ import java.util.Random;
 
 public class QuestionActivity extends AppCompatActivity {
     private double randNum;
-<<<<<<< HEAD
     Question q;
     // private TicketAppDatabase ticketAppDatabase;
     private ArrayList<Ticket> ticketsArrayList = new ArrayList<>();
-=======
-    public DbHelper dbHelper;
-    public SQLiteDatabase db;
->>>>>>> aef97ba6fbf1a409fee8bd19654e4441ed953932
 
     // private QuestionAppDatabase questionAppDatabase;
     private ArrayList<Question> questionsArrayList = new ArrayList<>();
@@ -57,40 +48,25 @@ public class QuestionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
-<<<<<<< HEAD
 
         ticketsArrayList.addAll(Utils.ticketAppDatabase.getTicketDAO().getAllTickets());
         questionsArrayList.addAll(Utils.questionAppDatabase.getQuestionDAO().getAllQuestions());
-=======
-        Random random = new Random();
-        dbHelper = new DbHelper(this);
-        db = dbHelper.getWritableDatabase();
->>>>>>> aef97ba6fbf1a409fee8bd19654e4441ed953932
 
         randNum = getNumber();
 
         double ticket =  Math.ceil(randNum/5);
         int question = (randNum % 5 == 0) ? 5 : (int) (randNum % 5);
-<<<<<<< HEAD
         long id = (long) randNum;
 
         q = Utils.questionAppDatabase.getQuestionDAO().getQuestion(id);
 
 
         answer = q.getAnswer();
-=======
->>>>>>> aef97ba6fbf1a409fee8bd19654e4441ed953932
         this.setTitle("Билет " + (int) ticket + ". " + "Вопрос " + question);
         numberTicket = (int) ticket;
         currnetQ = question;
 
-<<<<<<< HEAD
         clickableSpan = new ClickableSpan() {
-=======
-        //код с ссылками пока хзхз как с ним
-/*        SpannableString ss = new SpannableString("Более подробно можно раcсмотреть в таблице");
-        ClickableSpan clickableSpan = new ClickableSpan() {
->>>>>>> aef97ba6fbf1a409fee8bd19654e4441ed953932
             @Override
             public void onClick(View textView) {
                 int key = 0;
@@ -228,15 +204,11 @@ public class QuestionActivity extends AppCompatActivity {
         };
 
 
-<<<<<<< HEAD
         textView = (TextView) findViewById(R.id.title_question);
         textView.setText(q.getQuestion());
-=======
->>>>>>> aef97ba6fbf1a409fee8bd19654e4441ed953932
         textView.setMovementMethod(LinkMovementMethod.getInstance());
-        textView.setHighlightColor(Color.TRANSPARENT);*/
+        textView.setHighlightColor(Color.TRANSPARENT);
 
-<<<<<<< HEAD
 
     }
 
@@ -349,35 +321,11 @@ public class QuestionActivity extends AppCompatActivity {
 
         Utils.questionAppDatabase.getQuestionDAO().updateQuestion(question);
         questionsArrayList.set((int) randNum-1, question);
-=======
-        TextView textView = (TextView) findViewById(R.id.textQuestion);
-        textView.setText(getQuestionText((int) randNum));
     }
 
-    public void showAnswer(View view) {
-        //надо как-то придумать как оформить вопросы
-        ExampleDialog exampleDialog = new ExampleDialog("Идейные соображения высшего порядка");
-        exampleDialog.show(getSupportFragmentManager(), "TEst");
-    }
+    private double getNumber(){
+        int size = Utils.countQuestion;
 
-    public void correctAnswer(View view) {
-        ContentValues cv = new ContentValues();
-        cv.put(DbHelper.STATUS, 1);
-        db.update(DbHelper.TABLE_QUESTION, cv, DbHelper._ID + "=" + String.valueOf((int)randNum), null);
-
-        Utils.setStatusQuestion(this.db);
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
->>>>>>> aef97ba6fbf1a409fee8bd19654e4441ed953932
-    }
-
-    public String getQuestionText(int id)
-    {
-        String result = "";
-        Cursor c = db.query(DbHelper.TABLE_QUESTION, new String[]{DbHelper._ID, DbHelper.TEXT},
-                DbHelper._ID + "=" + String.valueOf(id),  null, null, null, null);
-
-<<<<<<< HEAD
         if (size > 0){
             Random random = new Random();
             double randNum = random.nextInt(size) + 1;
@@ -394,31 +342,5 @@ public class QuestionActivity extends AppCompatActivity {
     private void home(){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-=======
-        if(c.moveToPosition(0)){
-            result = c.getString(c.getColumnIndex(DbHelper.TEXT));
-        }
-        c.close();
-
-        return result;
-    }
-
-    private int getNumber(){
-        int size = Utils.countQuestion;
-
-        Random random = new Random();
-        int index = 0;
-
-        while(true)
-        {
-            index = (int) (random.nextInt(size) + 1);
-            if(Utils.statusQuestion[index - 1])
-                continue;
-            else
-                break;
-        }
-
-        return index;
->>>>>>> aef97ba6fbf1a409fee8bd19654e4441ed953932
     }
 }

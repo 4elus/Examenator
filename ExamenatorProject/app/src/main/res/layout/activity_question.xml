@@ -31,11 +31,7 @@
         android:layout_margin="@dimen/marginVerticalMini">
 
         <TextView
-<<<<<<< HEAD
             android:id="@+id/title_question"
-=======
-            android:id="@+id/textQuestion"
->>>>>>> aef97ba6fbf1a409fee8bd19654e4441ed953932
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/marginVerticalMini"

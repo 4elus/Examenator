@@ -4,11 +4,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -20,14 +17,10 @@ import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.view.LayoutInflater;
 import android.view.View;
-<<<<<<< HEAD
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.FrameLayout;
-=======
-import android.widget.Button;
->>>>>>> aef97ba6fbf1a409fee8bd19654e4441ed953932
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,7 +36,6 @@ import java.util.Random;
 
 public class TicketActivity extends AppCompatActivity {
 
-<<<<<<< HEAD
     private ArrayList<Ticket> ticketsArrayList = new ArrayList<>();
     private ArrayList<Question> questions;
     private boolean[] passedQuestions;
@@ -64,19 +56,10 @@ public class TicketActivity extends AppCompatActivity {
     ClickableSpan clickableSpan;
     ClickableSpan clickableSpan2;
     ClickableSpan clickableSpan3;
-=======
-    public DbHelper dbHelper;
-    public SQLiteDatabase db;
-    public int currentTicket;
-    public int currentQuestion;
-    public int result;
-
->>>>>>> aef97ba6fbf1a409fee8bd19654e4441ed953932
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ticket);
-<<<<<<< HEAD
 
         ticketsArrayList.addAll(Utils.ticketAppDatabase.getTicketDAO().getAllTickets());
         numberTicket = getNumber();
@@ -211,21 +194,6 @@ public class TicketActivity extends AppCompatActivity {
         };
 
         clickableSpan3 = new ClickableSpan() {
-=======
-        Random random = new Random();
-        dbHelper = new DbHelper(this);
-        db = dbHelper.getWritableDatabase();
-        result = 0;
-
-        currentTicket = getNumber();
-        this.setTitle("Билет " + currentTicket);
-        currentQuestion = 1;
-        changePanel(currentQuestion);
-
-
-/*        SpannableString ss = new SpannableString("Более подробно можно раcсмотреть в приложении ....");
-        ClickableSpan clickableSpan = new ClickableSpan() {
->>>>>>> aef97ba6fbf1a409fee8bd19654e4441ed953932
             @Override
             public void onClick(View textView) {
                 TouchImageView image = new TouchImageView(TicketActivity.this);
@@ -255,11 +223,10 @@ public class TicketActivity extends AppCompatActivity {
         textView = (TextView) findViewById(R.id.title_question);
         textView.setText(questions.get(0).getQuestion());
         textView.setMovementMethod(LinkMovementMethod.getInstance());
-        textView.setHighlightColor(Color.TRANSPARENT);*/
+        textView.setHighlightColor(Color.TRANSPARENT);
     }
 
     public void showAnswer(View view) {
-<<<<<<< HEAD
        SpannableString ss;
         if (numberTicket == 1 && currnetQ == 3){
             ss = new SpannableString(answer);
@@ -568,115 +535,3 @@ public class TicketActivity extends AppCompatActivity {
 
 
 }
-=======
-        ExampleDialog exampleDialog = new ExampleDialog("Ответ к вопросу");
-        exampleDialog.show(getSupportFragmentManager(), "TEst");
-
-        if(currentQuestion < 5)
-        {
-            currentQuestion++;
-            changePanel(currentQuestion);
-        }
-        else
-        {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-        }
-
-    }
-
-    public void correctAnswer(View view) {
-        result++;
-
-        if(currentQuestion < 5)
-        {
-            currentQuestion++;
-            changePanel(currentQuestion);
-        }
-        else
-        {
-            if(result == 5)
-            {
-                ContentValues cv = new ContentValues();
-                cv.put(DbHelper.STATUS, 1);
-                db.update(DbHelper.TABLE_TICKET, cv, DbHelper._ID + "=" + String.valueOf(currentTicket), null);
-
-                Utils.setStatusQuestion(this.db);
-            }
-
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-        }
-    }
-
-    public int getNumber()
-    {
-        int size = Utils.countTicket;
-
-        Random random = new Random();
-        int index = 0;
-
-        while(true)
-        {
-            index = (int) (random.nextInt(size) + 1);
-            if(Utils.statusTicket[index - 1])
-                continue;
-            else
-                break;
-        }
-
-        return index;
-    }
-
-    public String getQuestionText(int id)
-    {
-        String result = "";
-        Cursor c = db.query(DbHelper.TABLE_QUESTION, new String[]{DbHelper._ID, DbHelper.TEXT},
-                DbHelper._ID + "=" + String.valueOf(id),  null, null, null, null);
-
-        if(c.moveToPosition(0)){
-            result = c.getString(c.getColumnIndex(DbHelper.TEXT));
-        }
-        c.close();
-
-        return result;
-    }
-
-    public void changePanel(int index)
-    {
-        TextView textQue = (TextView) findViewById(R.id.title_question);
-        textQue.setText(getQuestionText((currentTicket - 1)*5 + index));
-
-        Button button;
-        switch(currentQuestion)
-        {
-            case 2:
-                button = (Button) findViewById(R.id.topFirst);
-                button.setTextColor(getResources().getColor(R.color.colorDivider));
-                button = (Button) findViewById(R.id.topSecond);
-                button.setTextColor(getResources().getColor(R.color.colorWhite));
-                break;
-            case 3:
-                button = (Button) findViewById(R.id.topSecond);
-                button.setTextColor(getResources().getColor(R.color.colorDivider));
-                button = (Button) findViewById(R.id.topThird);
-                button.setTextColor(getResources().getColor(R.color.colorWhite));
-                break;
-            case 4:
-                button = (Button) findViewById(R.id.topThird);
-                button.setTextColor(getResources().getColor(R.color.colorDivider));
-                button = (Button) findViewById(R.id.topForth);
-                button.setTextColor(getResources().getColor(R.color.colorWhite));
-                break;
-            case 5:
-                button = (Button) findViewById(R.id.topForth);
-                button.setTextColor(getResources().getColor(R.color.colorDivider));
-                button = (Button) findViewById(R.id.topFifth);
-                button.setTextColor(getResources().getColor(R.color.colorWhite));
-                break;
-        }
-
-    }
-
-}
->>>>>>> aef97ba6fbf1a409fee8bd19654e4441ed953932

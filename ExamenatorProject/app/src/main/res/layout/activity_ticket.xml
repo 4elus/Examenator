@@ -11,53 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-<<<<<<< HEAD
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-=======
-        <Button
-            android:id="@+id/topFirst"
-            android:text="1"
-            android:layout_width="@dimen/button_size"
-            android:layout_height="@dimen/button_size"
-            android:layout_marginRight="@dimen/margin_side_tick"
-            android:background="@drawable/nav_question"
-            android:backgroundTint="@color/colorProgressBar"
-            android:textColor="#fff"/>
-        <Button
-            android:id="@+id/topSecond"
-            android:text="2"
-            android:layout_width="@dimen/button_size"
-            android:layout_height="@dimen/button_size"
-            android:layout_marginRight="@dimen/margin_side_tick"
-            android:background="@drawable/nav_question"
-            android:backgroundTint="@color/colorProgressBar"/>
-        <Button
-            android:id="@+id/topThird"
-            android:text="3"
-            android:layout_width="@dimen/button_size"
-            android:layout_height="@dimen/button_size"
-            android:layout_marginRight="@dimen/margin_side_tick"
-            android:background="@drawable/nav_question"
-            android:backgroundTint="@color/colorProgressBar"/>
-        <Button
-            android:id="@+id/topForth"
-            android:text="4"
-            android:layout_width="@dimen/button_size"
-            android:layout_height="@dimen/button_size"
-            android:layout_marginRight="@dimen/margin_side_tick"
-            android:background="@drawable/nav_question"
-            android:backgroundTint="@color/colorProgressBar"/>
-        <Button
-            android:id="@+id/topFifth"
-            android:text="5"
-            android:layout_width="@dimen/button_size"
-            android:layout_height="@dimen/button_size"
-            android:background="@drawable/nav_question"
-            android:backgroundTint="@color/colorProgressBar"/>
->>>>>>> aef97ba6fbf1a409fee8bd19654e4441ed953932
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -112,7 +69,6 @@
                     android:background="@drawable/nav_question"
                     android:backgroundTint="@color/colorProgressBar"/>
 
-<<<<<<< HEAD
             </LinearLayout>
 
             <View
@@ -177,61 +133,5 @@
         </LinearLayout>
 
     </ScrollView>
-=======
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_weight="4"
-        android:layout_margin="@dimen/marginVerticalMini">
-
-        <TextView
-            android:id="@+id/title_question"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_top_main"
-            android:padding="@dimen/marginVerticalMini"
-            android:text="Текст вопроса"
-            android:background="@color/colorTickText"
-            android:textColor="@color/colorDivider"
-            android:textSize="@dimen/textMain"
-            android:layout_marginLeft="@dimen/margin_side_main"
-            android:layout_marginRight="@dimen/margin_side_main"/>
-
-    </ScrollView>
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:orientation="vertical"
-        android:layout_margin="@dimen/marginVerticalMini">
-
-        <Button
-            android:id="@+id/yesAnswer"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/answerButtonsHeight"
-            android:layout_marginBottom="@dimen/marginVerticalMini"
-            android:background="@drawable/insent"
-            android:backgroundTint="@color/colorMainGreen"
-            android:layout_gravity="center"
-            android:text="Знаю"
-            android:textSize="@dimen/textHeaderMini"
-            android:textColor="@color/colorLightGrey"
-            android:textStyle="bold"
-            android:onClick="correctAnswer"/>
-        <Button
-            android:id="@+id/noAnswer"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/answerButtonsHeight"
-            android:background="@drawable/insent"
-            android:backgroundTint="@color/colorMainRed"
-            android:layout_gravity="center"
-            android:text="Ответ"
-            android:onClick="showAnswer"
-            android:textSize="@dimen/textHeaderMini"
-            android:textColor="@color/colorLightGrey"
-            android:textStyle="bold"
-            />
-    </GridLayout>
->>>>>>> aef97ba6fbf1a409fee8bd19654e4441ed953932
 
 </LinearLayout>
