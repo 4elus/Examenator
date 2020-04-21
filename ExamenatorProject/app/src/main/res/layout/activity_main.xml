@@ -10,9 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="@dimen/margin_side_main"
-        android:layout_marginRight="@dimen/margin_side_main">
+        android:layout_marginTop="@dimen/marginVerticalMini"
+        android:layout_marginLeft="@dimen/marginHorizontalMini"
+        android:layout_marginRight="@dimen/marginHorizontalMini">
 
         <TextView
             android:fontFamily="@font/robo"
@@ -22,7 +22,11 @@
             android:text="@string/main_button_question_name"/>
 
         <TextView
+<<<<<<< HEAD
             android:id="@+id/progressQuestion"
+=======
+            android:id="@+id/textQuestionProgress"
+>>>>>>> aef97ba6fbf1a409fee8bd19654e4441ed953932
             android:fontFamily="@font/robo"
             android:layout_width="1dp"
             android:layout_weight="1"
@@ -32,13 +36,14 @@
     </LinearLayout>
 
     <ProgressBar
-        android:id="@+id/progressBarDoneAnswer"
+        android:id="@+id/progressBarDoneQuestion"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:scaleY="2"
         android:layout_height="@dimen/progressbar_height"
-        android:layout_marginLeft="@dimen/margin_side_main"
-        android:layout_marginRight="@dimen/margin_side_main"
+        android:layout_marginTop="@dimen/marginVerticalMini"
+        android:layout_marginLeft="@dimen/marginHorizontalMini"
+        android:layout_marginRight="@dimen/marginHorizontalMini"
         android:progressTint="@color/colorLightBlue"
         android:progressBackgroundTint="@color/colorGreyWhite"
         android:max="75"
@@ -49,8 +54,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginLeft="@dimen/margin_side_main"
-        android:layout_marginRight="@dimen/margin_side_main">
+        android:layout_marginTop="@dimen/marginVerticalMini"
+        android:layout_marginLeft="@dimen/marginHorizontalMini"
+        android:layout_marginRight="@dimen/marginHorizontalMini">
 
         <TextView
             android:id="@+id/customTitle"
@@ -60,8 +66,14 @@
             android:layout_height="wrap_content"
             android:text="@string/main_button_ticket_name"/>
 
+<<<<<<< HEAD
         <TextView android:fontFamily="@font/robo"
             android:id="@+id/progressTicket"
+=======
+        <TextView
+            android:id="@+id/textTicketProgress"
+            android:fontFamily="@font/robo"
+>>>>>>> aef97ba6fbf1a409fee8bd19654e4441ed953932
             android:layout_width="1dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
@@ -74,9 +86,9 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="@dimen/progressbar_height"
-        android:layout_marginLeft="@dimen/margin_side_main"
-        android:layout_marginRight="@dimen/margin_side_main"
-        android:layout_marginTop="@dimen/margin_side_main"
+        android:layout_marginTop="@dimen/marginVerticalMini"
+        android:layout_marginLeft="@dimen/marginHorizontalMini"
+        android:layout_marginRight="@dimen/marginHorizontalMini"
         android:scaleY="2"
         android:progressTint="@color/colorLightGreen"
         android:progressBackgroundTint="@color/colorGreyWhite"
@@ -88,8 +100,8 @@
         android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="4dp"
-        android:layout_marginTop="@dimen/margin_side_main"
-        android:background="@color/colorDivider" />
+        android:layout_marginTop="@dimen/marginVerticalMini"
+        android:background="@color/colorDarkBlue" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -109,7 +121,7 @@
             android:textColor="@color/colorWhite"
             android:textStyle="bold"
             android:onClick="clickExam"
-            android:textSize="@dimen/text_size_main"/>
+            android:textSize="@dimen/textMain"/>
         <Button
             android:fontFamily="@font/robo"
             android:layout_width="1dp"
@@ -122,7 +134,7 @@
             android:text="Случайный вопрос"
             android:textColor="@color/colorWhite"
             android:textStyle="bold"
-            android:textSize="@dimen/text_size_main"/>
+            android:textSize="@dimen/textMain"/>
     </LinearLayout>
 
     <LinearLayout
@@ -142,7 +154,7 @@
             android:textColor="@color/colorWhite"
             android:textStyle="bold"
             android:onClick="clickProgress"
-            android:textSize="@dimen/text_size_main"/>
+            android:textSize="@dimen/textMain"/>
 
         <Button
             android:fontFamily="@font/robo"
@@ -156,7 +168,7 @@
             android:text="Список билетов"
             android:textColor="@color/colorWhite"
             android:textStyle="bold"
-            android:textSize="@dimen/text_size_main"/>
+            android:textSize="@dimen/textMain"/>
 
     </LinearLayout>
 </LinearLayout>

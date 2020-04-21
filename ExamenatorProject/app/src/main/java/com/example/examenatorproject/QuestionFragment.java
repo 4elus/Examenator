@@ -1,6 +1,9 @@
 package com.example.examenatorproject;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +21,6 @@ import static com.example.examenatorproject.Utils.*;
 public class QuestionFragment extends Fragment {
     View v;
 
-
     GridView gridView;
 
     public QuestionFragment() {
@@ -30,14 +32,25 @@ public class QuestionFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.progress, container, false);
 
+<<<<<<< HEAD
         ArrayList<String> numberTicket = new ArrayList<>();
 
         for (int i = 0; i < 15; i++) {
             numberTicket.add(String.valueOf(i+1));
         }
+=======
+        if (Utils.numberQuestion.size() == 0)
+            for (int i = 0; i < 75; i++){
+                Utils.numberQuestion.add(String.valueOf(i+1));
+            }
+        //СБОР ДАННЫХ ИЗ БД
+        DbHelper dbHelper = new DbHelper(getActivity());
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Utils.setStatusQuestion(db);
+>>>>>>> aef97ba6fbf1a409fee8bd19654e4441ed953932
 
         gridView = (GridView) v.findViewById(R.id.grid);
-        GridAdapter gridAdapter = new GridAdapter(getActivity(), numberTicket, statusTicket);
+        GridAdapter gridAdapter = new GridAdapter(getActivity(), Utils.numberQuestion, Utils.statusQuestion);
         gridView.setAdapter(gridAdapter);
         return v;
     }
