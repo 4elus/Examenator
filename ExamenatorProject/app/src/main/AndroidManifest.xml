@@ -14,54 +14,42 @@
 
         <activity
             android:name=".ReadTicketActivity"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".TicketListActivity"
-            tools:ignore="LockedOrientationActivity">
+            android:parentActivityName=".TicketListActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".TicketListActivity" />
         </activity>
         <activity
             android:name=".QuestionActivity"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".MainActivity"
-            tools:ignore="LockedOrientationActivity">
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
         <activity
             android:name=".ProgressActivity"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".MainActivity"
-            tools:ignore="LockedOrientationActivity">
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
         <activity
             android:name=".TicketActivity"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".TicketListActivity"
-            tools:ignore="LockedOrientationActivity">
+            android:parentActivityName=".TicketListActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".TicketListActivity" />
         </activity>
         <activity
             android:name=".TicketListActivity"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".MainActivity"
-            tools:ignore="LockedOrientationActivity">
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait"
-            android:launchMode="singleTop"
-            tools:ignore="LockedOrientationActivity">
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.Toast;
@@ -30,15 +31,11 @@ public class ProgressActivity extends AppCompatActivity {
     }
 
     public void clickQuestion(View view) {
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.container, new QuestionFragment());
-        ft.commit();
+        restartTicket();
     }
 
     public void clickTicket(View view) {
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.container, new TicketFragment());
-        ft.commit();
+        restartQuestion();
     }
 
     public void resetTicket(View view) {
@@ -52,8 +49,26 @@ public class ProgressActivity extends AppCompatActivity {
         Utils.numberTicket = new ArrayList<>();
         Utils.ticketPassed = 0;
 
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        //Intent intent = new Intent(this, MainActivity.class);
+        //startActivity(intent);
+        restartTicket();
+    }
+
+    private void restartTicket(){
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.container, new QuestionFragment());
+        ft.commit();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                startActivity(new Intent(this, MainActivity.class));
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+
     }
 
     private void updateTicket(String status, int position){
@@ -76,8 +91,13 @@ public class ProgressActivity extends AppCompatActivity {
         Utils.numberQuestion = new ArrayList<>();
         Utils.questionPassed = 0;
 
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        restartQuestion();
+    }
+
+    private void restartQuestion(){
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.container, new TicketFragment());
+        ft.commit();
     }
 
     private void updateQuestion(String questionStatus, int position){

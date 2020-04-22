@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -58,11 +59,7 @@ public class MainActivity extends AppCompatActivity {
                 QuestionAppDatabase.class, "QuestionDBNew").allowMainThreadQueries().build();
         questionsArrayList.addAll(Utils.questionAppDatabase.getQuestionDAO().getAllQuestions());
 
-        if (Utils.numberQuestion.size() == 0)
-            setQuestionValueToList();
-
-        if (Utils.numberTicket.size() == 0)
-            setTicketValueToList();
+       displayProgress();
 
         //Utils.ticketAppDatabase.getTicketDAO().clearTable();
         // Utils.questionAppDatabase.getQuestionDAO().clearTable();
@@ -73,12 +70,27 @@ public class MainActivity extends AppCompatActivity {
         // Toast.makeText(this, "Questions: " + questionsArrayList.size(), Toast.LENGTH_SHORT).show();
         //Toast.makeText(this,  questionsArrayList.get(5).getNumber_ticke() + " - " + questionsArrayList.get(5).getQuestion(), Toast.LENGTH_LONG).show();
 
+
+
+
+    }
+
+    private void displayProgress(){
+        if (Utils.numberQuestion.size() == 0)
+            setQuestionValueToList();
+
+        if (Utils.numberTicket.size() == 0)
+            setTicketValueToList();
+
+
+
         progressTicket.setText(Utils.ticketPassed + "/" + ticketsArrayList.size());
         progressQuestion.setText(Utils.questionPassed + "/" + questionsArrayList.size());
 
         progressBarDoneAnswer.setProgress(Utils.questionPassed);
         progressBarDoneTicket.setProgress(Utils.ticketPassed);
     }
+
 
     public void clickProgress(View view) {
         Intent intent = new Intent(this, ProgressActivity.class);
@@ -91,13 +103,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void clickQuestion(View view) {
-        Intent intent = new Intent(this, QuestionActivity.class);
-        startActivity(intent);
+        if (Utils.questionPassed == questionsArrayList.size()) {
+            Toast.makeText(this, "Все вопросы пройдены!", Toast.LENGTH_SHORT).show();
+        }else{
+            Intent intent = new Intent(this, QuestionActivity.class);
+            startActivity(intent);
+        }
     }
 
     public void clickExam(View view) {
-        Intent intent = new Intent(this, TicketActivity.class);
-        startActivity(intent);
+        if (Utils.ticketPassed == ticketsArrayList.size()){
+            Toast.makeText(this, "Все билеты пройдены!", Toast.LENGTH_SHORT).show();
+        }else {
+            Intent intent = new Intent(this, TicketActivity.class);
+            startActivity(intent);
+        }
     }
 
     public void setQuestionValueToList() {
@@ -113,7 +133,8 @@ public class MainActivity extends AppCompatActivity {
                 Utils.countQuestion = Utils.numberQuestion.size();
             }
         }catch (Exception er){
-            temp2();
+             temp2();
+            //Toast.makeText(this, "Question zero", Toast.LENGTH_SHORT).show();
             setQuestionValueToList();
         }
     }
@@ -132,7 +153,8 @@ public class MainActivity extends AppCompatActivity {
 
             Utils.countTicket = Utils.numberTicket.size();
         } catch (Exception er){
-            temp();
+             temp();
+            //Toast.makeText(this, "Ticket zero", Toast.LENGTH_SHORT).show();
             setTicketValueToList();
         }
     }
