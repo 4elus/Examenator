@@ -1,7 +1,9 @@
 package com.example.examenatorproject;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 
 import android.content.DialogInterface;
@@ -9,6 +11,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextPaint;
@@ -26,17 +29,17 @@ import com.ortiz.touchview.TouchImageView;
 
 import java.util.ArrayList;
 import java.util.Random;
-
+import android.widget.Button;
 
 public class QuestionActivity extends AppCompatActivity {
     private double randNum;
+    private Button buttonSuccessful;
     Question q;
     // private TicketAppDatabase ticketAppDatabase;
     private ArrayList<Ticket> ticketsArrayList = new ArrayList<>();
 
     // private QuestionAppDatabase questionAppDatabase;
     private ArrayList<Question> questionsArrayList = new ArrayList<>();
-    AlertDialog dialogAnswer;
     String answer;
     TextView textView;
     ClickableSpan clickableSpan;
@@ -44,19 +47,29 @@ public class QuestionActivity extends AppCompatActivity {
     ClickableSpan clickableSpan3;
     int numberTicket;
     int currnetQ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
 
+        buttonSuccessful = findViewById(R.id.yesAnswer);
         ticketsArrayList.addAll(Utils.ticketAppDatabase.getTicketDAO().getAllTickets());
         questionsArrayList.addAll(Utils.questionAppDatabase.getQuestionDAO().getAllQuestions());
 
-        randNum = getNumber();
+
+        if (savedInstanceState == null){
+            randNum = getNumber();
+        }else{
+            randNum = savedInstanceState.getDouble("numTicket");
+            buttonSuccessful.setEnabled(savedInstanceState.getBoolean("enable"));
+        }
 
         double ticket =  Math.ceil(randNum/5);
         int question = (randNum % 5 == 0) ? 5 : (int) (randNum % 5);
         long id = (long) randNum;
+
+
 
         q = Utils.questionAppDatabase.getQuestionDAO().getQuestion(id);
 
@@ -65,6 +78,7 @@ public class QuestionActivity extends AppCompatActivity {
         this.setTitle("Билет " + (int) ticket + ". " + "Вопрос " + question);
         numberTicket = (int) ticket;
         currnetQ = question;
+
 
         clickableSpan = new ClickableSpan() {
             @Override
@@ -106,6 +120,7 @@ public class QuestionActivity extends AppCompatActivity {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             dialog.dismiss();
+                                            QuestionActivity.this.onBackPressed();
                                         }
                                     }).
                                     setView(text);
@@ -117,6 +132,7 @@ public class QuestionActivity extends AppCompatActivity {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             dialog.dismiss();
+                                            QuestionActivity.this.onBackPressed();
                                         }
                                     }).
                                     setView(wb);
@@ -129,6 +145,7 @@ public class QuestionActivity extends AppCompatActivity {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             dialog.dismiss();
+                                            QuestionActivity.this.onBackPressed();
                                         }
                                     }).
                                     setView(image);
@@ -213,6 +230,8 @@ public class QuestionActivity extends AppCompatActivity {
     }
 
     public void showAnswer(View view) {
+        buttonSuccessful.setEnabled(false);
+
         SpannableString ss;
         if (numberTicket == 1 && currnetQ == 3){
             ss = new SpannableString(answer);
@@ -287,7 +306,11 @@ public class QuestionActivity extends AppCompatActivity {
             ss = new SpannableString(answer);
         }
 
-        dialogAnswer = new AlertDialog.Builder(this).setMessage(ss)
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.container, new AnswerFragment(ss, numberTicket, currnetQ));
+        ft.commit();
+
+        /*dialogAnswer = new AlertDialog.Builder(this).setMessage(ss)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -298,7 +321,9 @@ public class QuestionActivity extends AppCompatActivity {
         textView.setTextSize(12);
         textView.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
         textView.setMovementMethod(LinkMovementMethod.getInstance());
-        textView.setHighlightColor(Color.TRANSPARENT);
+        textView.setHighlightColor(Color.TRANSPARENT);*/
+
+
 
 
 
@@ -342,5 +367,18 @@ public class QuestionActivity extends AppCompatActivity {
     private void home(){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+    }
+
+    public void closeAnswer(View view) {
+        QuestionActivity.this.onBackPressed();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putDouble("numTicket", randNum);
+        outState.putBoolean("enable", false);
+
     }
 }

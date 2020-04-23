@@ -17,8 +17,6 @@ import static com.example.examenatorproject.Utils.*;
 
 public class QuestionFragment extends Fragment {
     View v;
-
-
     GridView gridView;
 
     public QuestionFragment() {

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="4"
+        android:layout_margin="@dimen/marginVerticalMini">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/textQuestion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/marginVerticalMini"
+                android:text="Testdfsfdssdfdsgfdbfdbdfbdfbdffsbdbdffb"
+                android:textSize="@dimen/textMain"
+                android:textColor="@color/colorDarkBlue"
+                android:background="@color/colorLightYellowText"/>
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:orientation="vertical"
+                android:layout_margin="@dimen/marginVerticalMini">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/answerButtonsHeight"
+                    android:background="@drawable/insent"
+                    android:onClick="closeAnswer"
+                    android:backgroundTint="@color/colorButMainExam"
+                    android:layout_gravity="center"
+                    android:text="Далее"
+                    android:textSize="@dimen/textHeaderMini"
+                    android:textColor="@color/colorLightGrey"
+                    android:textStyle="bold"/>
+            </GridLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

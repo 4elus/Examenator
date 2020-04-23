@@ -1,5 +1,6 @@
 package com.example.examenatorproject;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
@@ -10,6 +11,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextPaint;
@@ -22,6 +24,7 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,9 +42,10 @@ public class TicketActivity extends AppCompatActivity {
     private ArrayList<Ticket> ticketsArrayList = new ArrayList<>();
     private ArrayList<Question> questions;
     private boolean[] passedQuestions;
-    private boolean[] enable;
+    private Button buttonSuccessful;
+    private ScrollView scrollViewTicket;
     TextView textView;
-    Button button;
+    boolean accessCorrect;
     int numberTicket;
     String answer;
     double randNum;
@@ -49,33 +53,105 @@ public class TicketActivity extends AppCompatActivity {
     int passedQ;
     int correctAnswer;
     Ticket t;
-    AlertDialog dialogAnswer;
-
+    FrameLayout frameLayout;
 
 
     ClickableSpan clickableSpan;
     ClickableSpan clickableSpan2;
     ClickableSpan clickableSpan3;
+
+    private Button button1;
+    private Button button2;
+    private Button button3;
+    private Button button4;
+    private Button button5;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ticket);
-
+        button1 = findViewById(R.id.oneQ);
+        button2 = findViewById(R.id.twoQ);
+        button3 = findViewById(R.id.threeQ);
+        button4 = findViewById(R.id.fourQ);
+        button5 = findViewById(R.id.fiveQ);
+        buttonSuccessful = findViewById(R.id.yesAnswer);
+        textView = (TextView) findViewById(R.id.title_question);
+        frameLayout = findViewById(R.id.container);
+        scrollViewTicket = findViewById(R.id.ticketScrollView);
         ticketsArrayList.addAll(Utils.ticketAppDatabase.getTicketDAO().getAllTickets());
-        numberTicket = getNumber();
+
+        if (savedInstanceState == null){
+            numberTicket = getNumber();
+            passedQuestions = new boolean[5];
+            currnetQ = 1;
+            correctAnswer = 0;
+            questions = (ArrayList<Question>) Utils.questionAppDatabase.getQuestionDAO().getQuestion2(numberTicket-1);
+            textView.setText(questions.get(0).getQuestion());
+
+        }else{
+            setDefaultColorButton();
+            buttonSuccessful.setEnabled(savedInstanceState.getBoolean("access"));
+            frameLayout.setVisibility(View.INVISIBLE);
+            numberTicket = savedInstanceState.getInt("numTicket");
+
+            button1.setEnabled(savedInstanceState.getBoolean("button1"));
+            button2.setEnabled(savedInstanceState.getBoolean("button2"));
+            button3.setEnabled(savedInstanceState.getBoolean("button3"));
+            button4.setEnabled(savedInstanceState.getBoolean("button4"));
+            button5.setEnabled(savedInstanceState.getBoolean("button5"));
+
+            if (!button1.isEnabled()){
+                button1.setBackgroundTintList(getResources().getColorStateList(R.color.colorClose));
+            }
+            if (!button2.isEnabled()){
+                button2.setBackgroundTintList(getResources().getColorStateList(R.color.colorClose));
+            }
+            if (!button3.isEnabled()){
+                button3.setBackgroundTintList(getResources().getColorStateList(R.color.colorClose));
+            }
+            if (!button4.isEnabled()){
+                button4.setBackgroundTintList(getResources().getColorStateList(R.color.colorClose));
+            }
+            if (!button5.isEnabled()){
+                button5.setBackgroundTintList(getResources().getColorStateList(R.color.colorClose));
+            }
+
+            passedQuestions = savedInstanceState.getBooleanArray("passed");
+
+            currnetQ = savedInstanceState.getInt("currentQ");
+            correctAnswer = savedInstanceState.getInt("correct");
+            passedQ = savedInstanceState.getInt("passedQuestion");
+            textView.setText(savedInstanceState.getString("text"));
+
+            switch (currnetQ){
+                case 1:
+                    button1.setTextColor(getResources().getColor(R.color.colorWhite));
+                    break;
+                case 2:
+                    button2.setTextColor(getResources().getColor(R.color.colorWhite));
+                    break;
+                case 3:
+                    button3.setTextColor(getResources().getColor(R.color.colorWhite));
+                    break;
+                case 4:
+                    button4.setTextColor(getResources().getColor(R.color.colorWhite));
+                    break;
+                case 5:
+                    button5.setTextColor(getResources().getColor(R.color.colorWhite));
+                    break;
+
+            }
+            scrollViewTicket.fullScroll(ScrollView.FOCUS_UP);
+
+        }
 
         if (numberTicket == -1) return;
-
-        passedQuestions = new boolean[5];
-        enable = new boolean[] {true, true, true, true, true};
-
 
 
         t = Utils.ticketAppDatabase.getTicketDAO().getTicket(numberTicket);
         questions = (ArrayList<Question>) Utils.questionAppDatabase.getQuestionDAO().getQuestion2(numberTicket-1);
         answer = questions.get(0).getAnswer();
-        currnetQ = 1;
-        correctAnswer = 0;
 
 
 
@@ -220,13 +296,16 @@ public class TicketActivity extends AppCompatActivity {
         };
 
 
-        textView = (TextView) findViewById(R.id.title_question);
-        textView.setText(questions.get(0).getQuestion());
+
+
         textView.setMovementMethod(LinkMovementMethod.getInstance());
         textView.setHighlightColor(Color.TRANSPARENT);
     }
 
     public void showAnswer(View view) {
+        accessCorrect = false;
+        buttonSuccessful.setEnabled(accessCorrect);
+
        SpannableString ss;
         if (numberTicket == 1 && currnetQ == 3){
             ss = new SpannableString(answer);
@@ -301,7 +380,7 @@ public class TicketActivity extends AppCompatActivity {
             ss = new SpannableString(answer);
         }
 
-       dialogAnswer = new AlertDialog.Builder(this).setMessage(ss)
+       /*dialogAnswer = new AlertDialog.Builder(this).setMessage(ss)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -312,12 +391,12 @@ public class TicketActivity extends AppCompatActivity {
         textView.setTextSize(12);
         textView.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
         textView.setMovementMethod(LinkMovementMethod.getInstance());
-        textView.setHighlightColor(Color.TRANSPARENT);
+        textView.setHighlightColor(Color.TRANSPARENT);*/
 
-        /*frameLayout.setVisibility(View.VISIBLE);
+        frameLayout.setVisibility(View.VISIBLE);
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.container, new FragmentAnswer(answer, numberTicket, currnetQ));
-        ft.commit();*/
+        ft.replace(R.id.container, new AnswerTicketFragment(ss, numberTicket, currnetQ));
+        ft.commit();
     }
 
     private void updateQuestion(String ticketStatus){
@@ -345,124 +424,115 @@ public class TicketActivity extends AppCompatActivity {
     }
 
     public void navQuestion(View view) {
+        frameLayout.setVisibility(View.INVISIBLE);
+        buttonSuccessful.setEnabled(true);
         switch (view.getId()){
             case R.id.oneQ:
                 textView.setText(questions.get(0).getQuestion());
                 answer = questions.get(0).getAnswer();
                 setDefaultColorButton();
                 currnetQ = 1;
-                button = findViewById(R.id.oneQ);
-                button.setTextColor(getResources().getColor(R.color.colorWhite));
+
+                button1.setTextColor(getResources().getColor(R.color.colorWhite));
                 break;
             case R.id.twoQ:
                 textView.setText(questions.get(1).getQuestion());
                 answer = questions.get(1).getAnswer();
                 setDefaultColorButton();
                 currnetQ = 2;
-                button = findViewById(R.id.twoQ);
-                button.setTextColor(getResources().getColor(R.color.colorWhite));
+
+                button2.setTextColor(getResources().getColor(R.color.colorWhite));
                 break;
             case R.id.threeQ:
                 textView.setText(questions.get(2).getQuestion());
                 answer = questions.get(2).getAnswer();
                 setDefaultColorButton();
                 currnetQ = 3;
-                button = findViewById(R.id.threeQ);
-                button.setTextColor(getResources().getColor(R.color.colorWhite));
+
+                button3.setTextColor(getResources().getColor(R.color.colorWhite));
                 break;
             case R.id.fourQ:
                 textView.setText(questions.get(3).getQuestion());
                 answer = questions.get(3).getAnswer();
                 setDefaultColorButton();
                 currnetQ = 4;
-                button = findViewById(R.id.fourQ);
-                button.setTextColor(getResources().getColor(R.color.colorWhite));
+
+                button4.setTextColor(getResources().getColor(R.color.colorWhite));
                 break;
             case R.id.fiveQ:
                 textView.setText(questions.get(4).getQuestion());
                 answer = questions.get(4).getAnswer();
                 setDefaultColorButton();
                 currnetQ = 5;
-                button = findViewById(R.id.fiveQ);
-                button.setTextColor(getResources().getColor(R.color.colorWhite));
+
+                button5.setTextColor(getResources().getColor(R.color.colorWhite));
                 break;
         }
     }
 
     private void setDefaultColorButton(){
-        button = findViewById(R.id.oneQ);
-        button.setTextColor(getResources().getColor(R.color.colorDivider));
-
-        button = findViewById(R.id.twoQ);
-        button.setTextColor(getResources().getColor(R.color.colorDivider));
-
-        button = findViewById(R.id.threeQ);
-        button.setTextColor(getResources().getColor(R.color.colorDivider));
-
-        button = findViewById(R.id.fourQ);
-        button.setTextColor(getResources().getColor(R.color.colorDivider));
-
-        button = findViewById(R.id.fiveQ);
-        button.setTextColor(getResources().getColor(R.color.colorDivider));
+        button1.setTextColor(getResources().getColor(R.color.colorDivider));
+        button2.setTextColor(getResources().getColor(R.color.colorDivider));
+        button3.setTextColor(getResources().getColor(R.color.colorDivider));
+        button4.setTextColor(getResources().getColor(R.color.colorDivider));
+        button5.setTextColor(getResources().getColor(R.color.colorDivider));
     }
 
     public void correctAnswer(View view) {
         if (!passedQuestions[currnetQ-1]){
             correctAnswer += 1;
         }
+        accessCorrect = true;
         check();
     }
 
     private void check(){
         switch (currnetQ){
             case 1:
-                button = findViewById(R.id.oneQ);
-                button.setBackgroundTintList(getResources().getColorStateList(R.color.colorClose));
-                if (button.isEnabled()) {
+
+                button1.setBackgroundTintList(getResources().getColorStateList(R.color.colorClose));
+                if (button1.isEnabled()) {
                     passedQ += 1;
                     passedQuestions[currnetQ-1] = true;
                 }
-                button.setEnabled(false);
+                button1.setEnabled(false);
                 nextQuestion();
                 break;
             case 2:
-                button = findViewById(R.id.twoQ);
-                button.setBackgroundTintList(getResources().getColorStateList(R.color.colorClose));
-                if (button.isEnabled()) {
+
+                button2.setBackgroundTintList(getResources().getColorStateList(R.color.colorClose));
+                if (button2.isEnabled()) {
                     passedQ += 1;
                     passedQuestions[currnetQ-1] = true;
                 }
-                button.setEnabled(false);
+                button2.setEnabled(false);
                 nextQuestion();
                 break;
             case 3:
-                button = findViewById(R.id.threeQ);
-                button.setBackgroundTintList(getResources().getColorStateList(R.color.colorClose));
-                if (button.isEnabled()) {
+                button3.setBackgroundTintList(getResources().getColorStateList(R.color.colorClose));
+                if (button3.isEnabled()) {
                     passedQ += 1;
                     passedQuestions[currnetQ-1] = true;
                 }
-                button.setEnabled(false);
+                button3.setEnabled(false);
                 nextQuestion();
                 break;
             case 4:
-                button = findViewById(R.id.fourQ);
-                button.setBackgroundTintList(getResources().getColorStateList(R.color.colorClose));
-                if (button.isEnabled()) {
+                button4.setBackgroundTintList(getResources().getColorStateList(R.color.colorClose));
+                if (button4.isEnabled()) {
                     passedQ += 1;
                     passedQuestions[currnetQ-1] = true;
                 }
-                button.setEnabled(false);
+                button4.setEnabled(false);
                 nextQuestion();
                 break;
             case 5:
-                button = findViewById(R.id.fiveQ);
-                button.setBackgroundTintList(getResources().getColorStateList(R.color.colorClose));
-                if (button.isEnabled()) {
+                button5.setBackgroundTintList(getResources().getColorStateList(R.color.colorClose));
+                if (button5.isEnabled()) {
                     passedQ += 1;
                     passedQuestions[currnetQ-1] = true;
                 }
-                button.setEnabled(false);
+                button5.setEnabled(false);
                 nextQuestion();
                 break;
         }
@@ -483,28 +553,22 @@ public class TicketActivity extends AppCompatActivity {
     }
 
     private void nextQuestion(){
+        frameLayout.setVisibility(View.INVISIBLE);
+        buttonSuccessful.setEnabled(true);
         switch (currnetQ){
             case 1:
                 textView.setText(questions.get(1).getQuestion());
                 answer = questions.get(1).getAnswer();
                 setDefaultColorButton();
                 currnetQ = 2;
-                button = findViewById(R.id.twoQ);
-                button.setTextColor(getResources().getColor(R.color.colorWhite));
+                button2.setTextColor(getResources().getColor(R.color.colorWhite));
                 break;
             case 2:
                 textView.setText(questions.get(2).getQuestion());
                 answer = questions.get(2).getAnswer();
                 setDefaultColorButton();
                 currnetQ = 3;
-                button = findViewById(R.id.threeQ);
-                button.setTextColor(getResources().getColor(R.color.colorWhite));
-                /*
-                if (numberTicket == 1){
-                    SpannableString ss = new SpannableString(textView.getText().toString());
-                    ss.setSpan(clickableSpan, 1102, 1114, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                }
-                */
+                button3.setTextColor(getResources().getColor(R.color.colorWhite));
                 break;
             case 3:
                 textView.setText(questions.get(3).getQuestion());
@@ -512,8 +576,7 @@ public class TicketActivity extends AppCompatActivity {
                 setDefaultColorButton();
 
                 currnetQ = 4;
-                button = findViewById(R.id.fourQ);
-                button.setTextColor(getResources().getColor(R.color.colorWhite));
+                button4.setTextColor(getResources().getColor(R.color.colorWhite));
 
                 break;
             case 4:
@@ -521,8 +584,7 @@ public class TicketActivity extends AppCompatActivity {
                 answer = questions.get(4).getAnswer();
                 setDefaultColorButton();
                 currnetQ = 5;
-                button = findViewById(R.id.fiveQ);
-                button.setTextColor(getResources().getColor(R.color.colorWhite));
+                button5.setTextColor(getResources().getColor(R.color.colorWhite));
 
                 break;
         }
@@ -534,4 +596,28 @@ public class TicketActivity extends AppCompatActivity {
     }
 
 
+    public void closeAnswer(View view) {
+        check();
+        scrollViewTicket.fullScroll(ScrollView.FOCUS_UP);
+        accessCorrect = true;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putInt("numTicket", numberTicket);
+
+        outState.putBoolean("button1", button1.isEnabled());
+        outState.putBoolean("button2", button2.isEnabled());
+        outState.putBoolean("button3", button3.isEnabled());
+        outState.putBoolean("button4", button4.isEnabled());
+        outState.putBoolean("button5", button5.isEnabled());
+        outState.putBooleanArray("passed", passedQuestions);
+        outState.putInt("correct", correctAnswer);
+        outState.putInt("currentQ", currnetQ);
+        outState.putInt("passedQuestion", passedQ);
+        outState.putString("text", textView.getText().toString());
+        outState.putBoolean("access", accessCorrect);
+    }
 }

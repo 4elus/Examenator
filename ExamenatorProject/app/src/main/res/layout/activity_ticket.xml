@@ -8,6 +8,7 @@
     tools:context=".TicketActivity">
 
     <ScrollView
+        android:id="@+id/ticketScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -130,8 +131,12 @@
                     android:textColor="@color/colorLightGrey"
                     android:textStyle="bold"/>
             </GridLayout>
+            <FrameLayout
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </FrameLayout>
         </LinearLayout>
-
     </ScrollView>
 
 </LinearLayout>
