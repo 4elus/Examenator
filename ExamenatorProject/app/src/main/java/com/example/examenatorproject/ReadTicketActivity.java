@@ -2,9 +2,11 @@ package com.example.examenatorproject;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -53,14 +55,7 @@ public class ReadTicketActivity extends AppCompatActivity {
         final int numberQ = intent.getIntExtra("number", -1);
         this.setTitle("Билет " + numberQ);
 
-        
-       /* textViewQuestion = findViewById(R.id.textViewQuestion);
-        textViewAnswer = findViewById(R.id.textAnswerForQuestion);
 
-        ticketsArrayList.addAll(Utils.ticketAppDatabase.getTicketDAO().getAllTickets());
-        questions = (ArrayList<Question>) Utils.questionAppDatabase.getQuestionDAO().getQuestion2(numberQ-1);
-
-        textViewQuestion.setText(questions.get(0).getQuestion());*/
         ticketsArrayList.addAll(Utils.ticketAppDatabase.getTicketDAO().getAllTickets());
         questions = (ArrayList<Question>) Utils.questionAppDatabase.getQuestionDAO().getQuestion2(numberQ-1);
         TextView textView;
@@ -304,11 +299,21 @@ public class ReadTicketActivity extends AppCompatActivity {
                 textView.setText((number + 1) + ". " + questions.get(number).getQuestion());
                 Typeface font = Typeface.createFromAsset(getAssets(), "robo.ttf");
                 textView.setTypeface(font);
-                textView.setTextSize(16);
+                textView.setTextSize(19);
             }else{
                 textView.setBackgroundColor(getResources().getColor(R.color.colorLightYellowText));
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                String textSize = sharedPreferences.getString("size_text", "20");
+                int size = 0;
+
+                try {
+                    size = Integer.parseInt(textSize.trim());
+                } catch (Exception e){
+                    size = 20;
+                }
+
                 textView.setText(ss);
-                textView.setTextSize(14);
+                textView.setTextSize(size);
 
                 textView.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
                 textView.setMovementMethod(LinkMovementMethod.getInstance());

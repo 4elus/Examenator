@@ -1,6 +1,7 @@
 package com.example.examenatorproject;
 
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -17,7 +18,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.preference.PreferenceManager;
+
 import android.graphics.Typeface;
+import android.widget.Toast;
+
 import com.ortiz.touchview.TouchImageView;
 
 public class AnswerFragment extends Fragment {
@@ -42,11 +47,19 @@ public class AnswerFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.show_answer, container, false);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        String textSize = sharedPreferences.getString("size_text", "20");
+        int size = 0;
 
+        try {
+            size = Integer.parseInt(textSize.trim());
+        } catch (Exception e){
+            size = 20;
+        }
 
         textViewQuestion = v.findViewById(R.id.textQuestion);
         textViewQuestion.setText(textQuestion);
-        textViewQuestion.setTextSize(22);
+        textViewQuestion.setTextSize(size);
         textViewQuestion.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
         textViewQuestion.setMovementMethod(LinkMovementMethod.getInstance());
         textViewQuestion.setHighlightColor(Color.TRANSPARENT);

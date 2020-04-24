@@ -1,11 +1,15 @@
 package com.example.examenatorproject;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -39,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
 
         progressQuestion = findViewById(R.id.progressQuestion);
         progressBarDoneAnswer = findViewById(R.id.progressBarDoneAnswer);
@@ -184,6 +189,7 @@ public class MainActivity extends AppCompatActivity {
         Utils.ticketAppDatabase.getTicketDAO().deleteTicket(ticket);
     }
 
+    // Заполняем таблицу билеты
     private void temp(){
         for (int i = 1; i <= 15; i++) {
             createTicket("0", i);
@@ -217,6 +223,7 @@ public class MainActivity extends AppCompatActivity {
         Utils.questionAppDatabase.getQuestionDAO().deleteQuestion(question);
     }
 
+    // Заполняем таблицу вопросы
     private void temp2(){
         ArrayList<String> t = new ArrayList<>();
         t.add("Дать определение «Техническое обслуживание». (ПТБ гл.1 п.43)");
@@ -1233,5 +1240,28 @@ public class MainActivity extends AppCompatActivity {
             double numberTicket =  Math.ceil(i/5);
             createQuestion(String.valueOf((int) numberTicket), t.get(i), "0", q.get(i));
         }
+    }
+
+    // Меню настроек
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Подтягиваем наще соданное меню из папки menu
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.examenator_menu, menu);
+
+        return true;
+    }
+
+    // Запускаем наше меню
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_settings){
+            Intent openSettings = new Intent(this, SettingsActivity.class);
+            startActivity(openSettings);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

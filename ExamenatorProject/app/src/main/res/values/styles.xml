@@ -8,6 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="fontFamily">@font/robo</item>
         <item name="android:textSize">14sp</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
     </style>
 
     <style name="AlertDialogTheme" parent="android:Theme.Dialog">

@@ -91,72 +91,85 @@
         android:layout_marginTop="@dimen/margin_side_main"
         android:background="@color/colorDivider" />
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:weightSum="2"
-        android:layout_marginTop="25dp">
+        android:layout_height="match_parent">
 
-        <Button
-            android:fontFamily="@font/robo"
-            android:layout_width="1dp"
-            android:layout_weight="1"
-            android:layout_margin="4dp"
-            android:background="@drawable/insent"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:backgroundTint="@color/colorButMainExam"
-            android:text="Случайный билет"
-            android:textColor="@color/colorWhite"
-            android:textStyle="bold"
-            android:onClick="clickExam"
-            android:textSize="@dimen/text_size_main"/>
-        <Button
-            android:fontFamily="@font/robo"
-            android:layout_width="1dp"
-            android:onClick="clickQuestion"
-            android:layout_weight="1"
-            android:layout_margin="4dp"
-            android:background="@drawable/insent"
-            android:layout_height="match_parent"
-            android:backgroundTint="@color/colorButMainQue"
-            android:text="Случайный вопрос"
-            android:textColor="@color/colorWhite"
-            android:textStyle="bold"
-            android:textSize="@dimen/text_size_main"/>
-    </LinearLayout>
+            android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:weightSum="2">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:weightSum="2"
+                android:layout_marginTop="25dp">
 
-        <Button
-            android:fontFamily="@font/robo"
-            android:layout_width="1dp"
-            android:layout_weight="1"
-            android:layout_margin="4dp"
-            android:background="@drawable/insent"
-            android:layout_height="match_parent"
-            android:backgroundTint="@color/colorButMainFault"
-            android:text="@string/main_button_fault_name"
-            android:textColor="@color/colorWhite"
-            android:textStyle="bold"
-            android:onClick="clickProgress"
-            android:textSize="@dimen/text_size_main"/>
+                <Button
+                    android:fontFamily="@font/robo"
+                    android:layout_width="1dp"
+                    android:layout_weight="1"
+                    android:layout_margin="4dp"
+                    android:background="@drawable/insent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/colorButMainExam"
+                    android:text="Случайный билет"
+                    android:textColor="@color/colorWhite"
+                    android:textStyle="bold"
+                    android:onClick="clickExam"
+                    android:textSize="@dimen/text_size_main"/>
+                <Button
+                    android:fontFamily="@font/robo"
+                    android:layout_width="1dp"
+                    android:onClick="clickQuestion"
+                    android:layout_weight="1"
+                    android:layout_margin="4dp"
+                    android:background="@drawable/insent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/colorButMainQue"
+                    android:text="Случайный вопрос"
+                    android:textColor="@color/colorWhite"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/text_size_main"/>
+            </LinearLayout>
 
-        <Button
-            android:fontFamily="@font/robo"
-            android:layout_width="1dp"
-            android:onClick="showTickets"
-            android:layout_weight="1"
-            android:layout_margin="4dp"
-            android:background="@drawable/insent"
-            android:layout_height="match_parent"
-            android:backgroundTint="@color/colorButMainTick"
-            android:text="Список билетов"
-            android:textColor="@color/colorWhite"
-            android:textStyle="bold"
-            android:textSize="@dimen/text_size_main"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:weightSum="2">
 
-    </LinearLayout>
+                <Button
+                    android:fontFamily="@font/robo"
+                    android:layout_width="1dp"
+                    android:layout_weight="1"
+                    android:layout_margin="4dp"
+                    android:background="@drawable/insent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/colorButMainFault"
+                    android:text="@string/main_button_fault_name"
+                    android:textColor="@color/colorWhite"
+                    android:textStyle="bold"
+                    android:onClick="clickProgress"
+                    android:textSize="@dimen/text_size_main"/>
+
+                <Button
+                    android:fontFamily="@font/robo"
+                    android:layout_width="1dp"
+                    android:onClick="showTickets"
+                    android:layout_weight="1"
+                    android:layout_margin="4dp"
+                    android:background="@drawable/insent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/colorButMainTick"
+                    android:text="Список билетов"
+                    android:textColor="@color/colorWhite"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/text_size_main"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
 </LinearLayout>

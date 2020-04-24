@@ -13,8 +13,6 @@
     <string name="yesAnswer">ДА</string>
     <string name="noAnswer">НЕТ</string>
     <string name="test">Hello <a href="https://www.google.ru/">World</a></string>
-    <string
-        name="messageWithLink"><a href="http://electricalschool.info/main/visokovoltny/359-jelegaz-i-ego-svojjstva.html">   Перейти на сайт</a></string>
-    <string
-        name="posterLink"></string>
+    <string name="messageWithLink"><a href="http://electricalschool.info/main/visokovoltny/359-jelegaz-i-ego-svojjstva.html">   Перейти на сайт</a></string>
+    <string name="posterLink"></string>
 </resources>
