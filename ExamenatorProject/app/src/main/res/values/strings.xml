@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ЭКЗАМЕНАТОР</string>
+    <string name="app_name">Экзамен ПТБ</string>
     <!--    главная страница (главная активность)-->
     <string name="parameter_statistic">Статистика</string>
     <string name="main_button_exam_name">Экзамен</string>

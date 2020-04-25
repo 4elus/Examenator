@@ -45,7 +45,6 @@ public class TicketActivity extends AppCompatActivity {
     private Button buttonSuccessful;
     private ScrollView scrollViewTicket;
     TextView textView;
-    boolean accessCorrect;
     int numberTicket;
     String answer;
     double randNum;
@@ -303,8 +302,6 @@ public class TicketActivity extends AppCompatActivity {
     }
 
     public void showAnswer(View view) {
-        accessCorrect = false;
-        buttonSuccessful.setEnabled(accessCorrect);
 
        SpannableString ss;
         if (numberTicket == 1 && currnetQ == 3){
@@ -411,16 +408,13 @@ public class TicketActivity extends AppCompatActivity {
     private int getNumber(){
         int size = Utils.countTicket;
 
-        if (size > 0){
-            Random random = new Random();
-            randNum = random.nextInt(size) + 1;
-            //int index = (int) randNum;
-            int index = Integer.parseInt(Utils.ticketDuplicate.get((int)(randNum-1)));
-            return index;
-        }else{
-            Toast.makeText(this, "Все билеты пройдены", Toast.LENGTH_SHORT).show();
-            return -1;
-        }
+
+        Random random = new Random();
+        randNum = random.nextInt(size) + 1;
+        //int index = (int) randNum;
+        int index = Integer.parseInt(Utils.ticketDuplicate.get((int)(randNum-1)));
+        return index;
+
     }
 
     public void navQuestion(View view) {
@@ -482,7 +476,6 @@ public class TicketActivity extends AppCompatActivity {
         if (!passedQuestions[currnetQ-1]){
             correctAnswer += 1;
         }
-        accessCorrect = true;
         check();
     }
 
@@ -536,20 +529,18 @@ public class TicketActivity extends AppCompatActivity {
                 nextQuestion();
                 break;
         }
-        if (correctAnswer == 5){
-            Utils.statusTicket[numberTicket-1] = true;
-            Utils.ticketDuplicate.remove(String.valueOf(numberTicket));
-            Utils.countTicket -= 1;
-            Utils.ticketPassed += 1;
-            updateQuestion("1");
-            Toast.makeText(this, "Билет пройден", Toast.LENGTH_SHORT).show();
-            home();
-        }else{
-            if (passedQ == 5){
-                Toast.makeText(this, "Билет не пройден", Toast.LENGTH_SHORT).show();
-                home();
-            }
+        if (correctAnswer == 5 || passedQ == 5){
+            finishTicket();
         }
+    }
+
+    private void finishTicket(){
+        Utils.statusTicket[numberTicket-1] = true;
+        Utils.ticketDuplicate.remove(String.valueOf(numberTicket));
+        Utils.countTicket -= 1;
+        Utils.ticketPassed += 1;
+        updateQuestion("1");
+        home();
     }
 
     private void nextQuestion(){
@@ -595,13 +586,6 @@ public class TicketActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
-    public void closeAnswer(View view) {
-        check();
-        scrollViewTicket.fullScroll(ScrollView.FOCUS_UP);
-        accessCorrect = true;
-    }
-
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -618,6 +602,5 @@ public class TicketActivity extends AppCompatActivity {
         outState.putInt("currentQ", currnetQ);
         outState.putInt("passedQuestion", passedQ);
         outState.putString("text", textView.getText().toString());
-        outState.putBoolean("access", accessCorrect);
     }
 }

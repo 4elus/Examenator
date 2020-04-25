@@ -8,4 +8,10 @@
         android:orderInCategory="100"
         app:showAsAction="always"
         android:icon="@drawable/ic_settings_white_24dp"/>
+    <item
+        android:id="@+id/action_exit"
+        android:title="Settings"
+        android:orderInCategory="101"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_exit_to_app_white_24dp"/>
 </menu>

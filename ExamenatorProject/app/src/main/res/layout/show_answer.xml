@@ -18,7 +18,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/marginVerticalMini"
-                android:text="Testdfsfdssdfdsgfdbfdbdfbdfbdffsbdbdffb"
+                android:text=""
                 android:textSize="@dimen/textMain"
                 android:textColor="@color/colorDarkBlue"
                 android:background="@color/colorLightYellowText"/>
@@ -29,18 +29,6 @@
                 android:layout_weight="0"
                 android:orientation="vertical"
                 android:layout_margin="@dimen/marginVerticalMini">
-
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/answerButtonsHeight"
-                    android:background="@drawable/insent"
-                    android:onClick="closeAnswer"
-                    android:backgroundTint="@color/colorButMainExam"
-                    android:layout_gravity="center"
-                    android:text="Далее"
-                    android:textSize="@dimen/textHeaderMini"
-                    android:textColor="@color/colorLightGrey"
-                    android:textStyle="bold"/>
             </GridLayout>
 
         </LinearLayout>

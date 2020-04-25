@@ -230,8 +230,6 @@ public class QuestionActivity extends AppCompatActivity {
     }
 
     public void showAnswer(View view) {
-        buttonSuccessful.setEnabled(false);
-
         SpannableString ss;
         if (numberTicket == 1 && currnetQ == 3){
             ss = new SpannableString(answer);
@@ -309,24 +307,6 @@ public class QuestionActivity extends AppCompatActivity {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.container, new AnswerFragment(ss, numberTicket, currnetQ));
         ft.commit();
-
-        /*dialogAnswer = new AlertDialog.Builder(this).setMessage(ss)
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        home();
-                    }
-                }).show();
-        TextView textView = (TextView) dialogAnswer.findViewById(android.R.id.message);
-        textView.setTextSize(12);
-        textView.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
-        textView.setMovementMethod(LinkMovementMethod.getInstance());
-        textView.setHighlightColor(Color.TRANSPARENT);*/
-
-
-
-
-
     }
 
     public void correctAnswer(View view) {
@@ -341,7 +321,6 @@ public class QuestionActivity extends AppCompatActivity {
 
     private void updateQuestion(String questionStatus){
         Question question = q;
-
         question.setStatus(questionStatus);
 
         Utils.questionAppDatabase.getQuestionDAO().updateQuestion(question);
@@ -350,17 +329,11 @@ public class QuestionActivity extends AppCompatActivity {
 
     private double getNumber(){
         int size = Utils.countQuestion;
+        Random random = new Random();
+        double randNum = random.nextInt(size) + 1;
 
-        if (size > 0){
-            Random random = new Random();
-            double randNum = random.nextInt(size) + 1;
-           // int index = (int) randNum;
-            int index = Integer.parseInt(Utils.questionDuplicate.get((int)(randNum-1)));
-            return index;
-        }else{
-            Toast.makeText(this, "Все вопросы пройдены", Toast.LENGTH_SHORT).show();
-            return -1;
-        }
+        int index = Integer.parseInt(Utils.questionDuplicate.get((int)(randNum-1)));
+        return index;
 
     }
 
@@ -369,9 +342,6 @@ public class QuestionActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void closeAnswer(View view) {
-        QuestionActivity.this.onBackPressed();
-    }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {

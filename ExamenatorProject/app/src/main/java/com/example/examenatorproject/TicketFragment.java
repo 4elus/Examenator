@@ -18,14 +18,7 @@ public class TicketFragment extends Fragment {
     GridView gridView;
 
     public TicketFragment(){
-        //for (int i = 0; i < 75; i++) {
-            //Utils.numberQuestion.add(String.valueOf(i+1));
 
-            /*if (i % 2 == 0)
-                Utils.statusQuestion[i] = true;
-            else
-                Utils.statusQuestion[i] = false;*/
-       // }
     }
 
     @Nullable

@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
 
         progressQuestion = findViewById(R.id.progressQuestion);
         progressBarDoneAnswer = findViewById(R.id.progressBarDoneAnswer);
@@ -1260,6 +1259,10 @@ public class MainActivity extends AppCompatActivity {
             Intent openSettings = new Intent(this, SettingsActivity.class);
             startActivity(openSettings);
             return true;
+        }else if (id == R.id.action_exit){
+            finishAffinity();
+
+            System.exit(0);
         }
 
         return super.onOptionsItemSelected(item);
